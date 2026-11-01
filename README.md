@@ -1,3 +1,16 @@
-# tiatya-bridge SRS
+# tiatya-bridge-docs
 
-Discord 봇 tiatya-bridge의 요구사항 명세(BRIDGE-SRS-001)를 공개하는 저장소입니다. 원본 코드 저장소는 비공개이고, 여기에는 생성된 명세 HTML(`index.html`)만 올립니다.
+Discord 개인 에이전트 Tia-tya의 브리지 서버(tiatya-bridge) 문서를 공개하는 저장소입니다.
+<br> 원본 코드 저장소는 비공개이고, 여기에는 원본에서 생성한 문서 두 개만 올라옵니다.
+
+| 문서 | 내용 | 주소 |
+|---|---|---|
+| BRIDGE-SRS-001 요구사항 명세 | 요구 → 기능 → 인수 기준 → 시험을 ID로 추적할 수 있게 관리합니다. | https://qa-justice.github.io/tiatya-bridge-docs/ |
+| BRIDGE-TR-001 시험 결과 보고서 | 명세 버전이 바뀔 때마다 테스트를 실행하고 결과 보고서를 업데이트합니다.<br>시험 결과, 요구 추적, 발견된 불일치는 업데이트할 때마다 새로 측정합니다. <br> 행동 평가와 로그 감사는 비정기적으로 하고, 보고서에는 마지막으로 한 결과가 그대로 실립니다. | https://qa-justice.github.io/tiatya-bridge-docs/tr.html |
+
+## 생성 방식
+
+1. 원본 저장소에서 명세를 고치면 `npm run docs:spec`이 명세 HTML을 다시 만들고, 명세 버전이 바뀌었으면 테스트를 돌려 보고서를 업데이트합니다.
+2. 그 변경이 원본 `master`에 올라가면 GitHub Actions가 `npm test`를 다시 돌립니다. 끊긴 참조, 밀린 인용, 낡은 HTML, 명세보다 뒤처진 보고서가 하나라도 있으면 여기서 멈춥니다.
+3. 통과하면 서버 이름, 홈 경로 같은 운영 정보를 가린 사본을 만들고 가린 뒤에도 남은 것이 없는지 다시 검사합니다.
+4. 검사를 통과한 사본만 이 저장소에 PR로 올라옵니다. 사람이 확인한 뒤 머지하면 GitHub Pages에 배포됩니다.
